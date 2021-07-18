@@ -7,6 +7,9 @@ class Question(models.Model):
     content = models.TextField()
     create_date = models.DateTimeField()
 
+    def __str__(self):
+        return self.subject
+
 
 # 답변 게시글
 class Answer(models.Model):
