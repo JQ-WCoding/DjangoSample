@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+{% if question_list %}
+<ul>
+    {% for question in question_list %}
+    <li><a href="/pybo/{{question.id}}/">{{question.subject}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>no Questions</p>
+{% endif %}
+</body>
+</html>
