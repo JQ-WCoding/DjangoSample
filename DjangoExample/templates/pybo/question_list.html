@@ -5,9 +5,8 @@
     <title>test</title>
 </head>
 <body>
-{% load static %}
-<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
-
+{% extends 'base.html' %}
+{% block content %}
 <div class="container my-3">
     <table class="table">
         <thead>
@@ -36,5 +35,6 @@
         </tbody>
     </table>
 </div>
+{% endblock %}
 </body>
 </html>
