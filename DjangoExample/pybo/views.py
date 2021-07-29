@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.utils import timezone
 
@@ -36,6 +37,8 @@ def detail(request, question_id):
     return render(request, 'pybo/question_detail.html', context)
 
 
+# 로그인시에만 사용가능하도록 어노테이션 작성
+@login_required(login_url='common:login')
 def answer_create(request, question_id):
     """
     답변 등록
@@ -48,6 +51,7 @@ def answer_create(request, question_id):
         form = AnswerForm(request.POST)
         if form.is_valid():
             answer = form.save(commit=False)
+            answer.author = request.user
             answer.create_date = timezone.now()
             answer.question = question
             answer.save()
@@ -58,6 +62,7 @@ def answer_create(request, question_id):
     return render(request, 'pybo/question_detail.html', context)
 
 
+@login_required(login_url='common:login')
 def question_create(request):
     """
     질문 등록
@@ -68,6 +73,7 @@ def question_create(request):
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
+            question.author = request.user
             question.create_date = timezone.now()
             question.save()
             return redirect('pybo:index')
