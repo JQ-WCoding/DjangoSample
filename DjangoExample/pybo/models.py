@@ -21,3 +21,13 @@ class Answer(models.Model):
     create_date = models.DateTimeField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)  # null 허용 (작성자 명 없음도 허용)
     modify_date = models.DateTimeField(null=True, blank=True)
+
+
+# 댓글
+class Comment(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    create_date = models.DateTimeField()
+    modify_date = models.DateTimeField(null=True, blank=True)
+    question = models.ForeignKey(Question, null=True, blank=True, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, null=True, blank=True, on_delete=models.CASCADE)
