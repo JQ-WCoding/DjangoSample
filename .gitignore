@@ -1,4 +1,3 @@
 # Project exclude paths
 /venv/
 
-/DjangoExample/config/settings/base.py
