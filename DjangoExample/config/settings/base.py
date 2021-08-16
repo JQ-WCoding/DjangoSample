@@ -126,6 +126,7 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
+# 로깅설정
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -143,11 +144,9 @@ LOGGING = {
             'format': '[{server_time}] {message}',
             'style': '{',
         },
-        # ---------------------------------- [edit] ---------------------------------- #
         'standard': {
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
         },
-        # ---------------------------------------------------------------------------- #
     },
     'handlers': {
         'console': {
@@ -177,13 +176,17 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'mail_admins'],
+            'handlers': ['console', 'mail_admins', 'file'],
             'level': 'INFO',
         },
         'django.server': {
             'handlers': ['django.server'],
             'level': 'INFO',
             'propagate': False,
+        },
+        'pybo': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
         },
     }
 }
